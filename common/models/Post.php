@@ -19,7 +19,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'post';
+        return 'posts';
     }
 
     /**
@@ -29,7 +29,7 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['description', 'content'], 'string'],
-            [['title'], 'string', 'max' => 255]
+            [['title','type'], 'string', 'max' => 255]
         ];
     }
 
