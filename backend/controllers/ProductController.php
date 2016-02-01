@@ -10,9 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PostController implements the CRUD actions for Post model.
+ * ProductController implements the CRUD actions for Post model.
  */
-class PostController extends Controller {
+class ProductController extends Controller {
 
     public function behaviors() {
         return [
@@ -31,7 +31,7 @@ class PostController extends Controller {
      */
     public function actionIndex() {
         $dataProvider = new ActiveDataProvider([
-            'query' => Post::find()->where(['type' => 'post']),
+            'query' => Post::find()->where(['type' => 'product']),
         ]);
 
         return $this->render('index', [
@@ -57,7 +57,7 @@ class PostController extends Controller {
      */
     public function actionCreate() {
         $model = new Post();
-        $model->type = 'post';
+        $model->type = 'product';
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
