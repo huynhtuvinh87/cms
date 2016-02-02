@@ -28,6 +28,18 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            // Disable r= routes
+            'enablePrettyUrl' => true,
+            'showScriptName' => false, // Disable index.php
+            'enablePrettyUrl' => true, // Disable r= routes
+            'rules' => [
+                '<controller:\w+>/<action:\w+>/<id:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ]
+        ],
+        
     ],
     'params' => $params,
 ];

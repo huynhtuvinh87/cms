@@ -69,7 +69,8 @@ class CategoryController extends Controller {
             $parent = Category::findOne($model->parent_id);
             if (!empty($parent))
                 $model->indent = $parent->indent + 1;
-            $model->indent = 0;
+            else
+                $model->indent = 0;
             $model->save();
             return $this->redirect(['index']);
         } else {
@@ -92,7 +93,8 @@ class CategoryController extends Controller {
             $parent = Category::findOne($model->parent_id);
             if (!empty($parent))
                 $model->indent = $parent->indent + 1;
-            $model->indent = 0;
+            else
+                $model->indent = 0;
             $model->save();
             return $this->redirect(['index']);
         } else {

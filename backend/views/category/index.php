@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Categories');
+$this->title = Yii::t('cms', 'Categories');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Category'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('cms', 'Create Category'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?=
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'description:ntext',
             // 'order',
             // 'status',
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'backend\components\columns\ActionColumn'],
         ],
     ]);
     ?>

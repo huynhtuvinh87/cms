@@ -19,7 +19,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'posts';
+        return '{{%post}}';
     }
 
     /**

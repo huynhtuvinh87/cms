@@ -23,7 +23,7 @@ class Category extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'categories';
+        return '{{%categories}}';
     }
 
     /**
@@ -43,11 +43,12 @@ class Category extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'title' => 'Name',
-            'slug' => 'Slug',
-            'parent_id' => 'Parent ID',
-            'description' => 'Description',
-            'status' => 'Status',
+            'title' => Yii::t('cms', 'title'),
+            'slug' => Yii::t('cms', 'slug'),
+            'parent_id' => Yii::t('cms', 'parent'),
+            'description' => Yii::t('cms', 'description'),
+            'type' => Yii::t('cms', 'type'),
+            'publish' => Yii::t('cms', 'publish'),
         ];
     }
 
@@ -69,7 +70,7 @@ class Category extends \yii\db\ActiveRecord {
     }
 
     public function getCategories(&$data = [], $parent = NULL) {
-        $category = Category::find()->where(['parent_id' => $parent])->andWhere(['NOT IN', 'id', isset($this->id) ? $this->id : NULL])->all();
+        $category = Category::find()->where(['parent_id' => $parent])->andWhere(['NOT IN', 'id', (!$this->isNewRecord) ? $this->id : 0])->all();
         foreach ($category as $key => $value) {
             $data[$value->id] = $this->getIndent($value->indent) . $value->title;
             unset($category[$key]);
