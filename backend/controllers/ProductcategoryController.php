@@ -3,16 +3,17 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Post;
+use common\models\Category;
 use yii\data\ActiveDataProvider;
+use yii\data\ArrayDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ProductController implements the CRUD actions for Post model.
+ * ProductCategoryController implements the CRUD actions for Category model.
  */
-class ProductController extends Controller {
+class ProductcategoryController extends Controller {
 
     public function behaviors() {
         return [
@@ -26,13 +27,19 @@ class ProductController extends Controller {
     }
 
     /**
-     * Lists all Post models.
+     * Lists all Category models.
      * @return mixed
      */
     public function actionIndex() {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Post::find()->where(['type' => 'product']),
+        $model = $this->categories();
+        $dataProvider = new ArrayDataProvider([
+            'key' => 'id',
+            'allModels' => $model,
+            'pagination' => [
+                'pageSize' => 200,
+            ],
         ]);
+
 
         return $this->render('index', [
                     'dataProvider' => $dataProvider,
@@ -40,7 +47,7 @@ class ProductController extends Controller {
     }
 
     /**
-     * Displays a single Post model.
+     * Displays a single Category model.
      * @param integer $id
      * @return mixed
      */
@@ -51,15 +58,21 @@ class ProductController extends Controller {
     }
 
     /**
-     * Creates a new Post model.
+     * Creates a new Category model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
-        $model = new Post();
+        $model = new Category();
         $model->type = 'product';
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $parent = Category::findOne($model->parent_id);
+            if (!empty($parent))
+                $model->indent = $parent->indent + 1;
+            else
+                $model->indent = 0;
+            $model->save();
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                         'model' => $model,
@@ -68,7 +81,7 @@ class ProductController extends Controller {
     }
 
     /**
-     * Updates an existing Post model.
+     * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -76,8 +89,14 @@ class ProductController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $parent = Category::findOne($model->parent_id);
+            if (!empty($parent))
+                $model->indent = $parent->indent + 1;
+            else
+                $model->indent = 0;
+            $model->save();
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                         'model' => $model,
@@ -86,7 +105,7 @@ class ProductController extends Controller {
     }
 
     /**
-     * Deletes an existing Post model.
+     * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -97,15 +116,25 @@ class ProductController extends Controller {
         return $this->redirect(['index']);
     }
 
+    protected function categories(&$data = [], $parent = NULL) {
+        $category = Category::find()->where(['parent_id' => $parent, 'type' => 'product'])->all();
+        foreach ($category as $key => $value) {
+            $data[] = $value;
+            unset($category[$key]);
+            $this->categories($data, $value->id);
+        }
+        return $data;
+    }
+
     /**
-     * Finds the Post model based on its primary key value.
+     * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Post the loaded model
+     * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = Post::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

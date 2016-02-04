@@ -117,7 +117,7 @@ class CategoryController extends Controller {
     }
 
     protected function categories(&$data = [], $parent = NULL) {
-        $category = Category::find()->where(['parent_id' => $parent])->all();
+        $category = Category::find()->where(['parent_id' => $parent, 'type' => 'post'])->all();
         foreach ($category as $key => $value) {
             $data[] = $value;
             unset($category[$key]);
