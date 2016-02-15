@@ -1,9 +1,7 @@
 <?php
+
 $params = array_merge(
-    require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/../../common/config/params-local.php'),
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+        require(__DIR__ . '/../../common/config/params.php'), require(__DIR__ . '/../../common/config/params-local.php'), require(__DIR__ . '/params.php'), require(__DIR__ . '/params-local.php')
 );
 
 return [
@@ -39,7 +37,16 @@ return [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ]
         ],
-        
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@frontend/views' => '@frontend/web/themes/demo',
+                    '@frontend/components' => '@frontend/themes/demo/components',
+                    '@frontend/widgets' => '@frontend/themes/demo/widgets',
+                ],
+                'baseUrl' => '@web/themes/demo',
+            ],
+        ],
     ],
     'params' => $params,
 ];

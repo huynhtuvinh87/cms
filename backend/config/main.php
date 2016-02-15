@@ -9,7 +9,6 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'language' => 'vn',
     'modules' => [],
     'components' => [
         'user' => [
@@ -46,6 +45,9 @@ return [
                     'basePath' => '@common/messages'
                 ],
             ],
+        ],
+        'langSwitcher' => [
+            'class' => 'backend\components\widgets\LangSwitcher',
         ],
     ],
     'params' => $params,

@@ -19,11 +19,14 @@ use yii\behaviors\TimestampBehavior;
  */
 class Category extends \yii\db\ActiveRecord {
 
+    const PUBLISH_ACTIVE = 1;
+    const PUBLISH_NOACTIVE = 2;
+
     /**
      * @inheritdoc
      */
     public static function tableName() {
-        return '{{%categories}}';
+        return 'categories';
     }
 
     /**
@@ -31,7 +34,8 @@ class Category extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['parent_id', 'status'], 'integer'],
+            [['parent_id', 'publish'], 'integer'],
+            ['publish', 'default', 'value' => self::PUBLISH_ACTIVE],
             [['description'], 'string'],
             [['title', 'slug', 'type'], 'string', 'max' => 255]
         ];
@@ -43,12 +47,12 @@ class Category extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'title' => Yii::t('cms', 'title'),
-            'slug' => Yii::t('cms', 'slug'),
-            'parent_id' => Yii::t('cms', 'parent'),
-            'description' => Yii::t('cms', 'description'),
-            'type' => Yii::t('cms', 'type'),
-            'publish' => Yii::t('cms', 'publish'),
+            'title' => Yii::t('cms', 'Title'),
+            'slug' => Yii::t('cms', 'Slug'),
+            'parent_id' => Yii::t('cms', 'Parent'),
+            'description' => Yii::t('cms', 'Description'),
+            'type' => Yii::t('cms', 'Type'),
+            'publish' => Yii::t('cms', 'Publish'),
         ];
     }
 
@@ -69,12 +73,12 @@ class Category extends \yii\db\ActiveRecord {
         ]);
     }
 
-    public function getCategories(&$data = [], $parent = NULL) {
-        $category = Category::find()->where(['parent_id' => $parent])->andWhere(['NOT IN', 'id', (!$this->isNewRecord) ? $this->id : 0])->all();
+    public function getCategories($type = NULL, &$data = [], $parent = NULL) {
+        $category = Category::find()->where(['parent_id' => $parent, 'type' => $type])->andWhere(['NOT IN', 'id', (!$this->isNewRecord) ? $this->id : 0])->all();
         foreach ($category as $key => $value) {
             $data[$value->id] = $this->getIndent($value->indent) . $value->title;
             unset($category[$key]);
-            $this->getCategories($data, $value->id);
+            $this->getCategories($type, $data, $value->id);
         }
         return $data;
     }

@@ -1,14 +1,15 @@
 <?php
 
 return[
-    'title' => 'Title',
-    'slug' => 'Slug',
-    'parent' => 'Parent',
-    'description' => 'Description',
-    'type' => 'Type',
-    'publish' => 'Publish',
+    'Title' => 'Title',
+    'Slug' => 'Slug',
+    'Parent' => 'Parent',
+    'Description' => 'Description',
+    'Type' => 'Type',
+    'Publish' => 'Publish',
     'Create' => 'Create',
     'Update' => 'Update',
     'View' => 'View',
-    'delete' => 'Delete'
+    'Delete' => 'Delete',
+    'Categories' => 'Categories'
 ];
