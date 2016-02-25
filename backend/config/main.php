@@ -11,6 +11,29 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'assetManager' => [
+            'class' => 'yii\web\AssetManager',
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => [
+                        YII_ENV_DEV ? 'jquery.js' : 'jquery.min.js'
+                    ]
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [
+                        YII_ENV_DEV ? 'css/bootstrap.min.css' : 'css/bootstrap.css',
+                    ],
+                    'js' => [
+                        YII_ENV_DEV ? 'js/bootstrap.min.js' : 'js/bootstrap.js',
+                    ]
+                ],
+//                'yii\bootstrap\BootstrapPluginAsset' => [
+//                    'js' => [
+//                        YII_ENV_DEV ? 'js/bootstrap.min.js' : 'js/bootstrap.js',
+//                    ]
+//                ]
+            ],
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

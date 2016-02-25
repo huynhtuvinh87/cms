@@ -12,32 +12,29 @@ use Yii;
  * @property string $description
  * @property string $content
  */
-class Post extends \yii\db\ActiveRecord
-{
+class Post extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
-        return '{{%post}}';
+    public static function tableName() {
+        return 'posts';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['description', 'content'], 'string'],
-            [['title','type'], 'string', 'max' => 255]
+            [['title', 'type', 'slug'], 'string', 'max' => 255]
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'title' => 'Title',
@@ -45,4 +42,5 @@ class Post extends \yii\db\ActiveRecord
             'content' => 'Content',
         ];
     }
+
 }

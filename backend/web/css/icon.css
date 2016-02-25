@@ -1,0 +1,373 @@
+
+.icons{
+    background-image: url('../images/icon/icons.png');
+    background-size: 659px 345px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}
+.icons.icon-dola{
+    width: 40px;
+    height: 65px;
+    background-position: -510px 0;
+}
+.icons.icon-time{
+    width: 65px;
+    height: 65px;
+    background-position: -441px 0;
+}
+
+.icons.icon-doc-active{
+    width: 85px;
+    height: 108px;
+    background-position: 0 0;
+}
+.icons.icon-onepay{
+    background-position: -440px -231px;
+    width: 80px;
+    height: 38px;
+}
+.icons.icon-visa{
+    background-position: 0 -231px;
+    width: 105px;
+    height: 36px;
+}
+.icons.icon-mestacard{
+    background-position: -118px -231px;
+    width: 85px;
+    height: 40px;
+}
+.icons.icon-visa-verified{
+    background-position: -204px -231px;
+    width: 95px;
+    height: 40px;
+}
+.icons.icon-mestacard-sourecode{
+    background-position: -325px -231px;
+    width: 110px;
+    height: 40px;
+}
+.icons.icon-add{
+    background-position: -327px -121px;
+    width: 33px;
+    height: 33px;
+}
+.icons.icon-avatar{
+    width: 52px;
+    height: 63px;
+    background-position: 0 -161px;
+}
+.icons.icon-avatar-1{
+    width: 50px;
+    height: 63px;
+    background-position: -57px -161px;
+}
+.icons.icon-avatar-2{
+    width: 53px;
+    height: 63px;
+    background-position: -110px -161px;
+}
+
+.icons.icon-avatar-3{
+    width: 53px;
+    height: 63px;
+    background-position: -165px -161px;
+}
+
+.icons.icon-avatar-active, .icons.icon-avatar:hover{
+    width: 52px;
+    height: 63px;
+    background-position: -220px -161px;
+}
+.icons.icon-avatar-active-1, .icons.icon-avatar-1:hover{
+    width: 50px;
+    height: 63px;
+    background-position: -276px -161px;
+}
+.icons.icon-avatar-active-2{
+    width: 53px;
+    height: 63px;
+    background-position: -331px -161px;
+}
+.icons.icon-avatar-active-3{
+    width: 53px;
+    height: 63px;
+    background-position: -384px -161px;
+}
+
+.icons.icon-facebook-active{
+    width: 40px;
+    height: 40px;
+    background-position: 0 -119px;
+}
+
+.icons.icon-twitter{
+    width: 40px;
+    height: 40px;
+    background-position: -199px -119px;
+}
+.icons.icon-google{
+    width: 40px;
+    height: 40px;
+    background-position: -240px -119px;
+}
+.icon-photographer{
+    background-image: url('../images/jobs/photograper.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 70px;
+    height: 54px;
+}
+
+
+/*edit profile personal*/
+.icon-education-progress{
+    background-position: -140px bottom;
+    height: 65px;
+    width: 65px;
+}
+.icon-workdone-progress{
+    background-position: -70px bottom;
+    height: 65px;
+    width: 65px;
+}
+.icon-work-progress{
+    background-position: 0 bottom;
+    height: 65px;
+    width: 65px;
+}
+
+
+
+/*icon jobs*/
+.job-software{
+    background-position: 0 0;
+}
+.job-sof-other{
+    background-position: -70px 0;
+}
+.job-camera{
+    background-position: -140px 0;
+}
+.job-internet{
+    background-position: -210px 0;
+}
+.job-dev-game{
+    background-position: -280px 0;
+}
+.job-dev-software{
+    background-position: -350px 0;
+}
+.job-dev-website{
+    background-position: -420px 0;
+}
+.job-tester{
+    background-position: -490px 0;
+}
+.job-project-manager{
+    background-position: -560px 0;
+}
+.job-id-Hardware{
+    background-position: -630px 0;
+}
+.job-domain-hosting{
+    background-position: -700px 0;
+}
+.job-app-mobile{
+    background-position: -770px 0;
+}
+
+.job-design-other{
+    background-position: 0px -70px;
+}
+.job-packaging-label{
+    background-position: -70px -70px;
+}
+.job-catalogue{
+    background-position: -140px -70px;
+}
+.job-booth-posm-salekit{
+    background-position: -210px -70px;
+}
+.job-brochure-profile{
+    background-position: -280px -70px;
+}
+.job-design-web-app{
+    background-position: -350px -70px;
+}
+.job-architecture{
+    background-position: -420px -70px;
+}
+.job-card-calendar{
+    background-position: -490px -70px;
+}
+.job-design-logo{
+    background-position: -560px -70px;
+}
+.job-poster-banner-flyer{
+    background-position: -630px -70px;
+}
+.job-design-fashion{
+    background-position: -700px -70px;
+}
+.job-design-video{
+    background-position: -770px -70px;
+}
+
+
+.job-doctor{
+    background-position: 0px -140px;
+}
+.job-moving-relocation{
+    background-position: -70px -140px;
+}
+.job-homeserve-other{
+    background-position: -140px -140px;
+}
+.job-teacher-painter-assistant{
+    background-position: -210px -140px;
+}
+.job-house-maid{
+    background-position: -280px -140px;
+}
+.job-gardening-locksmith{
+    background-position: -350px -140px;
+}
+.job-repair-power-water{
+    background-position: -420px -140px;
+}
+.job-repair-consumer-electronics{
+    background-position: -490px -140px;
+}
+.job-cleaner-protect-guard-driver{
+    background-position: -560px -140px;
+}
+
+
+.job-themed-plaster-masonry-glass-aluminum{
+    background-position: -630px -140px;
+}
+.job-unclog-drain-concrete{
+    background-position: -700px -140px;
+}
+.job-construction-interior-exterior{
+    background-position: -770px -140px;
+}
+
+
+.job-content-editor{
+    background-position: 0px -210px;
+}
+.job-translation{
+    background-position: -70px -210px;
+}
+.job-content-other{
+    background-position: -140px -210px;
+}
+.job-translating-directly{
+    background-position: -210px -210px;
+}
+.job-writer-blog{
+    background-position: -280px -210px;
+}
+.job-writer-pr-advertising{
+    background-position: -350px -210px;
+}
+.job-writer-resumes-cvs{
+    background-position: -420px -210px;
+}
+.job-rriter-content-website{
+    background-position: -490px -210px;
+}
+
+
+.job-strategy-marketing-plan{
+    background-position: 0px -280px;
+}
+.job-banner-advertising{
+    background-position: -70px -280px;
+}
+.job-marketing-other{
+    background-position: -140px -280px;
+}
+.job-email-marketing{
+    background-position: -210px -280px;
+}
+.job-market-surveys{
+    background-position: -280px -280px;
+}
+.job-sem{
+    background-position: -350px -280px;
+}
+.job-seo{
+    background-position: -420px -280px;
+}
+.job-smm{
+    background-position: -490px -280px;
+}
+
+
+
+.job-performing-group-pg{
+    background-position: 0px -350px;
+}
+.job-equipment-event{
+    background-position: -70px -350px;
+}
+.job-event-other{
+    background-position: -140px -350px;
+}
+.job-organizing-performance{
+    background-position: -210px -350px;
+}
+.job-organization-bidding{
+    background-position: -280px -350px;
+}
+.job-organization-seminars{
+    background-position: -350px -350px;
+}
+.job-organization-exhibitions{
+    background-position: -420px -350px;
+}
+.job-Costumes{
+    background-position: -490px -350px;
+}
+
+
+
+.job-cleaning-other{
+    background-position: 0px -420px;
+}
+.job-cleaning-aquarium{
+    background-position: -70px -420px;
+}
+.job-industrial-hygienist{
+    background-position: -140px -420px;
+}
+.job-cleaning-house{
+    background-position: -210px -420px;
+}
+.job-cleaning-office{
+    background-position: -280px -420px;
+}
+.job-waste-treatment{
+    background-position: -350px -420px;
+}
+
+
+.job-edit-image{
+    background-position: 0px -490px;
+}
+.job-photographer{
+    background-position: -70px -490px;
+}
+.job-photo-other{
+    background-position: -140px -490px;
+}
+.job-model-photo{
+    background-position: -210px -490px;
+}
+.job-cameraman{
+    background-position: -280px -490px;
+}
