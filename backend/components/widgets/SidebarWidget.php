@@ -65,19 +65,19 @@ class SidebarWidget extends Widget {
                         echo Menu::widget([
                             'items' => [
                                 ['label' => '<i class="fa fa-tachometer"></i> Trang chủ', 'url' => ['site/index']],
-                                ['label' => '<i class="fa fa-question-circle"></i> Quản lý hỗ trợ<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                ['label' => '<i class="fa fa-question-circle"></i> Quản lý bài viết<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
                                         ['label' => 'Danh mục', 'url' => ['category/index']],
                                         ['label' => 'Thêm mới danh mục', 'url' => ['category/create']],
                                         ['label' => 'Danh sách', 'url' => ['post/index']],
                                         ['label' => 'Thêm mới', 'url' => ['post/create']],
                                     ],
                                 ],
-                                ['label' => '<i class="fa fa-thumb-tack"></i> Quản lý trang nội dung<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                ['label' => '<i class="fa fa-thumb-tack"></i> Quản lý trang<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
                                         ['label' => 'Danh sách', 'url' => ['page/index']],
                                         ['label' => 'Thêm mới', 'url' => ['page/create']],
                                     ],
                                 ],
-             
+                                ['label' => '<i class="fa fa-picture-o"></i> Quản lý file', 'url' => ['file/index']],
                                 ['label' => '<i class="fa fa-cog"></i> Cấu hình chung', 'url' => ['setting/index']],
                             ],
                             'encodeLabels' => false,

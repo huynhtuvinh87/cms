@@ -40,19 +40,18 @@ class Category extends \yii\db\ActiveRecord {
             [['title', 'slug', 'type'], 'string', 'max' => 255]
         ];
     }
-
+     
     /**
      * @inheritdoc
      */
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'title' => Yii::t('cms', 'Title'),
-            'slug' => Yii::t('cms', 'Slug'),
-            'parent_id' => Yii::t('cms', 'Parent'),
-            'description' => Yii::t('cms', 'Description'),
-            'type' => Yii::t('cms', 'Type'),
-            'publish' => Yii::t('cms', 'Publish'),
+            'title' => 'Tiêu đề',
+            'slug' => 'Slug',
+            'parent_id' => 'Parent',
+            'description' => 'Mô tả',
+            'publish' => 'Trạng thái',
         ];
     }
 

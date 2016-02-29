@@ -39,10 +39,19 @@ class CategoryController extends Controller {
                 'pageSize' => 200,
             ],
         ]);
-
-
+        $categories = new Category();
+        if ($categories->load(Yii::$app->request->post())) {
+            $parent = Category::findOne($categories->parent_id);
+            if (!empty($parent))
+                $categories->indent = $parent->indent + 1;
+            else
+                $categories->indent = 0;
+            $categories->save();
+            return $this->redirect(['index']);
+        }
         return $this->render('index', [
                     'dataProvider' => $dataProvider,
+                    'model' => $categories
         ]);
     }
 
@@ -101,6 +110,20 @@ class CategoryController extends Controller {
             return $this->render('update', [
                         'model' => $model,
             ]);
+        }
+    }
+
+    public function actionPublish() {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $model = $this->findModel($_POST['id']);
+        if (!empty($model)) {
+            if ($model->publish == Category::PUBLISH_ACTIVE)
+                $model->publish = Category::PUBLISH_NOACTIVE;
+            else
+                $model->publish = Category::PUBLISH_ACTIVE;
+            if ($model->save()) {
+                return ['messages' => $model->publish];
+            }
         }
     }
 

@@ -11,17 +11,67 @@ use yii\widgets\ActiveForm;
 <div class="post-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <div class="col-md-9 col-sm-9 col-xs-12">
+        <div class="x_panel">
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= $form->field($model, 'content')->textarea(['class' => 'text-editor']) ?>
+        </div>
     </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
 
+        <div class="x_panel">
+            <?= $form->field($model, 'status')->dropDownList($model->postStatus) ?>
+        </div>
+        <div class="x_panel">
+            <?= $form->field($model, 'category_id')->dropDownList($model->getCategories()) ?>
+        </div>
+        <div class="x_panel">
+            <div class="form-group">
+                <label class="control-label">Hình ảnh</label>
+                <div class="profile-avatar">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div id="image_preview">
+                                <?php
+                                if (!empty($model->image)) {
+                                    echo '<img src="' . $model->image . '" alt="' . $model->title . '" >';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="row">       
+                        <div class="col-md-10 col-sm-10 col-xs-9 input-avatar">
+                            <?= $form->field($model, 'image')->textInput(['id' => 'fieldID'])->label(false) ?>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-3 btn-upload">
+                            <a href="/filemanager/dialog.php?type=1&field_id=fieldID&akey=<?= (string) $model->id ?>" class="btn iframe-btn btn-success" type="button"><i class="fa fa-upload"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <?= Html::submitButton($model->isNewRecord ? 'Thêm mới' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
+
+        </div>
+    </div>
     <?php ActiveForm::end(); ?>
 
 </div>
+<?= $this->registerJs("
+	$('.iframe-btn').fancybox({
+	  'width'	: 880,
+	  'height'	: 570,
+	  'type'	: 'iframe',
+	  'autoScale'   : false
+      });
+	$(function() {
+		$('#fieldID').observe_field(1, function( ) {
+			$('#image_preview').html('<img src='+this.value+'>');
+		});
+	});
+"); ?>
