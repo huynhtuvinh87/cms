@@ -26,7 +26,16 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'status')->dropDownList($model->postStatus) ?>
         </div>
         <div class="x_panel">
-            <?= $form->field($model, 'category_id')->dropDownList($model->getCategories()) ?>
+            <?=
+                    $form->field($model, 'category_id')
+                    ->checkboxList($model->getCategories(), [
+                        'item' => function($index, $label, $name, $checked, $value) {
+                            $check = $label['checked'] == 1 ? ' checked="checked"' : '';
+                            $return = '<div class="checkbox"><label><input type="checkbox" name="' . $name . '" ' . $check . ' value="' . $label['id'] . '" >' . $label['title'] . '</label></div>';
+                            return $return;
+                        }
+                    ])->label();
+            ?>
         </div>
         <div class="x_panel">
             <div class="form-group">

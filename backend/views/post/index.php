@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Menu;
+use common\models\Post;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -52,10 +53,30 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'multiple' => true,
                             ],
                             ['class' => 'yii\grid\SerialColumn'],
-                            'id',
+                            [
+                                'attribute' => 'category_id',
+                                'format' => 'raw',
+                                'value' => function($data) {
+                                    $rs = '';
+                                    foreach ($data->category as $value) {
+                                        $rs .= $value['indent'] . $value['title'] . '<br>';
+                                    }
+                                    return $rs;
+                                }
+                            ],
                             'title',
                             'description:ntext',
-                            'content:ntext',
+                            [
+                                'attribute' => 'status',
+                                'format' => 'raw',
+                                'value' => function($data) {
+                                    if ($data['status'] == Post::STATUS_PUBLISH)
+                                        $check = 'checked';
+                                    else
+                                        $check = '';
+                                    return '<input type="checkbox" name="status" ' . $check . '>';
+                                }
+                            ],
                             ['class' => 'yii\grid\ActionColumn'],
                         ],
                     ]);
@@ -65,3 +86,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<?= $this->registerJs('$("[name=status]").bootstrapSwitch({onText:"&nbsp;",offText:"&nbsp;",onColor:"default",offColor:"default"});') ?>
+<?= $this->registerJs('
+$("input[name=status]").on("switchChange.bootstrapSwitch", function(event, state) {
+    var key = $(this).parent().parent().parent().parent("tr").attr("data-key");
+        $.ajax({type: "POST", url:"' . Yii::$app->urlManager->createUrl(["category/publish"]) . '", data: {id: key,state:state}, success: function (data) {
+            }, });
+});
+') ?>

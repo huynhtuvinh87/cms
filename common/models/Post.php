@@ -30,6 +30,7 @@ class Post extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
+            [['title', 'category_id'], 'required', 'message' => '{attribute} không được rỗng'],
             [['description', 'content', 'image'], 'string'],
             [['title', 'type', 'slug', 'status'], 'string', 'max' => 255]
         ];
@@ -78,11 +79,25 @@ class Post extends \yii\db\ActiveRecord {
     }
 
     public function getCategories(&$data = [], $parent = NULL) {
+        $post = Post::findOne($this->id);
         $category = Category::find()->where(['parent_id' => $parent, 'type' => 'post'])->all();
         foreach ($category as $key => $value) {
-            $data[$value->id] = $this->getIndent($value->indent) . $value->title;
+            if (!empty($post->category_id) && in_array($value->id, explode(',', $post->category_id)))
+                $checked = 1;
+            else
+                $checked = 0;
+            $data[] = ['id' => $value->id, 'title' => $this->getIndent($value->indent) . $value->title, 'checked' => $checked];
             unset($category[$key]);
-            $this->getCategories($type, $data, $value->id);
+            $this->getCategories($data, $value->id);
+        }
+        return $data;
+    }
+
+    public function getCategory() {
+        $post = Post::findOne($this->id);
+        foreach (explode(',', $post->category_id) as $value) {
+            $category = Category::findOne($value);
+            $data[] = ['id' => $category->id, 'parent_id' => $category->parent_id, 'title' => $category->title, 'indent' => $this->getIndent($category->indent)];
         }
         return $data;
     }

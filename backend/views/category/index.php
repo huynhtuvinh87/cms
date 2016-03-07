@@ -68,6 +68,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?=
                     GridView::widget([
                         'dataProvider' => $dataProvider,
+                        'summary' => "<p>Hiển thị {begin} đến {end} trong tổng số {count} mục</p>",
+                         'layout' => "{pager}\n{items}\n{summary}\n{pager}",
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
                             [
