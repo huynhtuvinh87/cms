@@ -5,19 +5,27 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Post */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Post',
-]) . ' ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->title = 'Cập nhật: '.$model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Pages', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="post-update">
+<div class="post-create">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                <?= Html::encode($this->title) ?>
+            </h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="row">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+        <?=
+        $this->render('_form', [
+            'model' => $model,
+        ])
+        ?>
 
+    </div>
 </div>

@@ -39,10 +39,19 @@ class ProductcategoryController extends Controller {
                 'pageSize' => 200,
             ],
         ]);
-
-
+        $categories = new Category();
+        if ($categories->load(Yii::$app->request->post())) {
+            $parent = Category::findOne($categories->parent_id);
+            if (!empty($parent))
+                $categories->indent = $parent->indent + 1;
+            else
+                $categories->indent = 0;
+            $categories->save();
+            return $this->redirect(['index']);
+        }
         return $this->render('index', [
                     'dataProvider' => $dataProvider,
+                    'model' => $categories
         ]);
     }
 

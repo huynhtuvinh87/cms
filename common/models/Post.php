@@ -17,6 +17,10 @@ class Post extends \yii\db\ActiveRecord {
 
     const STATUS_PRIVATE = 'private';
     const STATUS_PUBLISH = 'publish';
+    const FEATURED_OPEN = 1;
+    const FEATURED_CLOSE = 0;
+    const SLIDE_OPEN = 1;
+    const SLIDE_CLOSE = 0;
 
     /**
      * @inheritdoc
@@ -32,7 +36,8 @@ class Post extends \yii\db\ActiveRecord {
         return [
             [['title', 'category_id'], 'required', 'message' => '{attribute} không được rỗng'],
             [['description', 'content', 'image'], 'string'],
-            [['title', 'type', 'slug', 'status'], 'string', 'max' => 255]
+            [['title', 'type', 'slug', 'status'], 'string', 'max' => 255],
+            ['price','default'],
         ];
     }
 
@@ -47,6 +52,9 @@ class Post extends \yii\db\ActiveRecord {
             'description' => 'Mô tả',
             'content' => 'Nội dung',
             'image' => 'Hình ảnh',
+            'price' => 'Giá',
+            'featured' => 'Nổi bật',
+            'slide' => 'Hiển thị trên slide',
             'created_at' => 'Ngày tạo',
             'status' => 'Trạng thái'
         ];
@@ -78,9 +86,23 @@ class Post extends \yii\db\ActiveRecord {
         ];
     }
 
-    public function getCategories(&$data = [], $parent = NULL) {
+    public function getFeatureds() {
+        return [
+            self::FEATURED_CLOSE => 'Đóng',
+            self::FEATURED_OPEN => 'Mở',
+        ];
+    }
+
+    public function getSlides() {
+        return [
+            self::SLIDE_CLOSE => 'Đóng',
+            self::SLIDE_OPEN => 'Mở',
+        ];
+    }
+
+    public function getCategories($type, &$data = [], $parent = NULL) {
         $post = Post::findOne($this->id);
-        $category = Category::find()->where(['parent_id' => $parent, 'type' => 'post'])->all();
+        $category = Category::find()->where(['parent_id' => $parent, 'type' => $type])->all();
         foreach ($category as $key => $value) {
             if (!empty($post->category_id) && in_array($value->id, explode(',', $post->category_id)))
                 $checked = 1;
@@ -88,7 +110,7 @@ class Post extends \yii\db\ActiveRecord {
                 $checked = 0;
             $data[] = ['id' => $value->id, 'title' => $this->getIndent($value->indent) . $value->title, 'checked' => $checked];
             unset($category[$key]);
-            $this->getCategories($data, $value->id);
+            $this->getCategories($type, $data, $value->id);
         }
         return $data;
     }

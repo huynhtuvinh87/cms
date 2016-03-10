@@ -25,10 +25,11 @@ use yii\widgets\ActiveForm;
         <div class="x_panel">
             <?= $form->field($model, 'status')->dropDownList($model->postStatus) ?>
         </div>
+
         <div class="x_panel">
             <?=
                     $form->field($model, 'category_id')
-                    ->checkboxList($model->getCategories(), [
+                    ->checkboxList($model->getCategories('post'), [
                         'item' => function($index, $label, $name, $checked, $value) {
                             $check = $label['checked'] == 1 ? ' checked="checked"' : '';
                             $return = '<div class="checkbox"><label><input type="checkbox" name="' . $name . '" ' . $check . ' value="' . $label['id'] . '" >' . $label['title'] . '</label></div>';
@@ -36,6 +37,10 @@ use yii\widgets\ActiveForm;
                         }
                     ])->label();
             ?>
+        </div>
+        <div class="x_panel">
+            <?= $form->field($model, 'featured')->dropDownList($model->featureds) ?>
+            <?= $form->field($model, 'slide')->dropDownList($model->slides) ?>
         </div>
         <div class="x_panel">
             <div class="form-group">

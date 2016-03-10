@@ -29,10 +29,10 @@ class SidebarWidget extends Widget {
 
                 <div class="navbar nav_title" style="border: 0;padding:15px 10px 15px 0;">
                     <a href="http://<?= $_SERVER['HTTP_HOST'] ?>" class="site_title">
-                        <?= Html::img('/images/giaonhanviec.png', ['alt' => 'giao nhận việc', 'class' => 'img-responsive']); ?>
+                        CMS
                     </a>
                     <a href="http://<?= $_SERVER['HTTP_HOST'] ?>" class="site_title site_title_sm">
-                        <?= Html::img('/images/icon/favicon.png', ['alt' => 'giao nhận việc', 'class' => 'img-responsive']); ?>
+                       CMS
                     </a>
                 </div>
                 <div class="clearfix"></div>
@@ -77,6 +77,14 @@ class SidebarWidget extends Widget {
                                         ['label' => 'Thêm mới', 'url' => ['page/create']],
                                     ],
                                 ],
+                                ['label' => '<i class="fa fa-question-circle"></i> Quản lý sản phẩm<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                        ['label' => 'Danh mục', 'url' => ['productcategory/index']],
+                                        ['label' => 'Thêm mới danh mục', 'url' => ['productcategory/create']],
+                                        ['label' => 'Danh sách', 'url' => ['product/index']],
+                                        ['label' => 'Thêm mới', 'url' => ['product/create']],
+                                    ],
+                                ],
+                                ['label' => '<i class="fa fa-picture-o"></i> Quản lý menu', 'url' => ['menu/index']],
                                 ['label' => '<i class="fa fa-picture-o"></i> Quản lý file', 'url' => ['file/index']],
                                 ['label' => '<i class="fa fa-cog"></i> Cấu hình chung', 'url' => ['setting/index']],
                             ],

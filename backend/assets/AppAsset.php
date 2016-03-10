@@ -72,6 +72,7 @@ class AppAsset extends AssetBundle {
         'js/jquery.observe_field.js',
 //        'js/jquery.mousewheel.js',
         'js/jquery.fancybox.js',
+        'js/jquery.nestable.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
