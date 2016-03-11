@@ -119,39 +119,37 @@ $this->params['breadcrumbs'][] = $this->title;
                         </ul>
                     </div>
                     <div id="result">Reordenar para obtener resultados...</div>
-                    <input type="text" name="order" id="menu-order">
-                    <input type="text" name="id" id="menu-id">
-                    <input type="text" name="parent_id" id="menu-parent_id">
+
                 </div>
             </div>
         </div>
     </div>
     <?= $this->registerJs('
-        $(function(){
-    $( "#sortable ul" ).sortable({
-        connectWith: "#sortable ul",
-        placeholder: "ui-state-highlight",
-        distance: 5,
-        update: function(event, ui){
-            
-            var newOrder = $(this).sortable("toArray").toString();
-            var _parent = Number(ui.item[0].parentElement.id);
-            var id_item = ui.item[0].id;
-            if (!isNaN(_parent))
-                id_parent = _parent;
-            $("#menu-order").val(newOrder);
-            $("#menu-id").val(id_item);
-            $("#menu-parent_id").val(id_parent);
-            $("#result").html("Datos a enviar: order=" + newOrder + "&parent=" + id_parent + "&id=" + id_item)
-
-            $.ajax({
-                url: "/menu/order",
-                data: "order=" + newOrder + "&parent=" + id_parent + "&id=" + id_item,
-                type: "POST"
-            });
-        }
-    });
-});
+//        $(function(){
+//    $( "#sortable ul" ).sortable({
+//        connectWith: "#sortable ul",
+//        placeholder: "ui-state-highlight",
+//        distance: 5,
+//        update: function(event, ui){
+//            
+//            var newOrder = $(this).sortable("toArray").toString();
+//            var _parent = Number(ui.item[0].parentElement.id);
+//            var id_item = ui.item[0].id;
+//            if (!isNaN(_parent))
+//                id_parent = _parent;
+//            $("#menu-order").val(newOrder);
+//            $("#menu-id").val(id_item);
+//            $("#menu-parent_id").val(id_parent);
+//            $("#result").html("Datos a enviar: order=" + newOrder + "&parent=" + id_parent + "&id=" + id_item)
+//
+//            $.ajax({
+//                url: "/menu/order",
+//                data: "order=" + newOrder + "&parent=" + id_parent + "&id=" + id_item,
+//                type: "POST"
+//            });
+//        }
+//    });
+//});
             ') ?>
     <style>
         .ui-state-highlight { border: 1px solid #f9a837; background: #fff0a5; padding: 10px 0; }

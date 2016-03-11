@@ -28,7 +28,7 @@ class MenuItem extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['parent_id', 'menu_id', 'type_id', 'order'], 'integer'],
-            [['type'], 'string'],
+            [['type','type_name','type_slug'], 'string'],
         ];
     }
 

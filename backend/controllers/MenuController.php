@@ -44,20 +44,38 @@ class MenuController extends Controller {
         if ($model->load(Yii::$app->request->post())) {
             if (!empty($_POST['category'])) {
                 foreach ($_POST['category'] as $value) {
-                    $order = MenuItem::find()->max('order');
                     $category = Category::findOne($value);
                     $menuitem = new MenuItem();
                     $menuitem->menu_id = $id;
-                    $menuitem->parent_id = $category->parent_id;
+                    if (!empty($category->parent_id))
+                        $menuitem->parent_id = $category->parent_id;
                     $menuitem->type_id = $category->id;
                     $menuitem->type = 'category';
-                    $menuitem->order = $order + 1;
+                    $menuitem->type_name = $category->title;
+                    $menuitem->type_slug = $category->slug;
+                    $menuitem->order = 0;
                     $menuitem->save();
-                    return $this->redirect(['view', 'id' => $model->id]);
                 }
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            if (!empty($_POST['page'])) {
+                foreach ($_POST['page'] as $value) {
+                    $page = Post::findOne($value);
+                    $menuitem = new MenuItem();
+                    $menuitem->menu_id = $id;
+                    $menuitem->type_id = $page->id;
+                    $menuitem->type = 'page';
+                    $menuitem->type_name = $page->title;
+                    $menuitem->type_slug = $page->slug;
+                    $menuitem->order = 0;
+                    $menuitem->save();
+                }
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         }
-        return $this->render('view', ['category' => $category, 'page' => $page, 'model' => $model]);
+        $menuitem = MenuItem::find()->where(['menu_id' => $id])->orderBy(['order' => SORT_ASC])->all();
+        $menuall = Menu::find()->all();
+        return $this->render('view', ['category' => $category, 'page' => $page, 'model' => $model, 'menuitem' => $menuitem, 'menuall' => $menuall]);
     }
 
     public function getCategories(&$data = [], $parent = NULL) {
@@ -83,8 +101,14 @@ class MenuController extends Controller {
 
     public function actionOrder() {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        var_dump(explode(',', $_POST['order']));
-        exit;
+        if (!empty($_POST['Menu']['id']) && !empty($_POST['order'])) {
+            foreach ($_POST['order'] as $key => $value) {
+                $item = MenuItem::findOne($value);
+                $item->parent_id = $_POST['parent'][$value];
+                $item->order = $key + 1;
+                $item->save();
+            }
+        }
     }
 
     protected function findModel($id) {
