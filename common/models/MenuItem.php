@@ -5,7 +5,6 @@ namespace common\models;
 use Yii;
 use yii\db\ActiveRecord;
 
-
 /**
  * This is the model class for table "post".
  *
@@ -14,13 +13,13 @@ use yii\db\ActiveRecord;
  * @property string $description
  * @property string $content
  */
-class Menu extends \yii\db\ActiveRecord {
+class MenuItem extends \yii\db\ActiveRecord {
 
     /**
      * @inheritdoc
      */
     public static function tableName() {
-        return 'menu';
+        return 'menu_item';
     }
 
     /**
@@ -28,7 +27,8 @@ class Menu extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name'], 'required', 'message' => '{attribute} không được rỗng'],
+            [['parent_id', 'menu_id', 'type_id', 'order'], 'integer'],
+            [['type'], 'string'],
         ];
     }
 

@@ -2,6 +2,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 use yii\grid\GridView;
 use yii\widgets\Menu;
 use common\models\Post;
@@ -10,17 +11,14 @@ use common\models\Category;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Menu';
+$this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
     <div class="page-title">
         <div class="title_left">
             <h3>
-                QUẢN LÝ MENU
-                <small>
-                    <a href="/menu/create" class="btn btn-success">Thêm mới</a>
-                </small>
+                <?= $this->title ?>
             </h3>
         </div>
     </div>
@@ -28,6 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-md-3 col-sm-3 col-xs-12">
+            <?php $form = ActiveForm::begin(); ?>
+            <?= $form->field($model, 'id')->hiddenInput()->label(FALSE) ?>
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Danh mục</h2>
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="checkbox">
                                         <?= common\models\Menu::getIndent($value['indent']) ?>
                                         <label>
-                                            <input type="checkbox" value="">
+                                            <input type="checkbox" name="category[]" value="<?= $value['id'] ?>">
                                             <?= $value['title'] ?>
                                         </label>
                                     </div>
@@ -56,6 +56,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                         ?>
                     </ul>
+                    <div class="form-group">
+                        <?= Html::submitButton('Thêm mới', ['class' => 'btn btn-primary pull-right']) ?>
+
+                    </div>
                 </div>
             </div>
             <div class="x_panel">
@@ -75,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <li>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="">
+                                            <input type="checkbox" name="page[]" value="">
                                             <?= $value->title ?>
                                         </label>
                                     </div>
@@ -87,6 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </ul>
                 </div>
             </div>
+            <?php ActiveForm::end(); ?>
         </div>
         <div class="col-md-9 col-sm-9 col-xs-12">
             <div class="x_panel">
