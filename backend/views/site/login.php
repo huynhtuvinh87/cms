@@ -15,14 +15,15 @@ $this->title = 'Đăng nhập';
 <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Nhập mật khẩu'])->label(false) ?>
 <div class="form-group">
     <?= Html::submitButton('Đăng nhập', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-    <a class="reset_pass" href="/site/forgetpassword">Quên mật khẩu?</a>
+    <!--<a class="reset_pass" href="/site/forgetpassword">Quên mật khẩu?</a>-->
+    <p>admin/123456</p>
 </div>
 <div class="clearfix"></div>
 <div class="separator">
     <div>
-        <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Giao nhận việc!</h1>
+        <h1><i class="fa fa-paw" style="font-size: 26px;"></i> GII CMS!</h1>
 
-        <p>©2015 All Rights Reserved. Privacy and Terms</p>
+        <p>©2016 GII CMS</p>
     </div>
 </div>
 <?php ActiveForm::end(); ?>

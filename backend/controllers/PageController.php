@@ -8,11 +8,12 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\controllers\BackendController;
 
 /**
  * PageController implements the CRUD actions for Post model.
  */
-class PageController extends Controller {
+class PageController extends BackendController {
 
     public function behaviors() {
         return [
@@ -58,6 +59,7 @@ class PageController extends Controller {
     public function actionCreate() {
         $model = new Post();
         $model->type = 'page';
+        $model->user_id = \Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -75,7 +77,7 @@ class PageController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
+        $model->user_id = \Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

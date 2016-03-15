@@ -8,11 +8,12 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\controllers\BackendController;
 
 /**
  * ProductController implements the CRUD actions for Post model.
  */
-class ProductController extends Controller {
+class ProductController extends BackendController {
 
     public function behaviors() {
         return [
@@ -58,6 +59,7 @@ class ProductController extends Controller {
     public function actionCreate() {
         $model = new Post();
         $model->type = 'product';
+        $model->user_id = \Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post())) {
             $model->price = (int) preg_replace('/[^0-9]/', '', $model->price);
             $model->category_id = implode(',', $model->category_id);
@@ -78,7 +80,7 @@ class ProductController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
+        $model->user_id = \Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post())) {
             $model->price = (int) preg_replace('/[^0-9]/', '', $model->price);
             $model->category_id = implode(',', $model->category_id);

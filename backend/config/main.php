@@ -61,6 +61,9 @@ return [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ]
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'i18n' => [
             'translations' => [
                 'cms*' => [

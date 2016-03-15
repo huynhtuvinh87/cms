@@ -72,7 +72,7 @@ AppAsset::register($this);
                                 <li class="">
                                     <?php if (!Yii::$app->user->isGuest) { ?>
                                         <a href="javascript:void(0)" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <img src="<?= Yii::$app->user->identity->username ?>" alt=""><?= Yii::$app->user->identity->username ?>
+                                            Xin chào: <?= Yii::$app->user->identity->username ?>
                                             <span class=" fa fa-angle-down"></span>
                                         </a>
                                     <?php } ?>
@@ -140,6 +140,9 @@ AppAsset::register($this);
 
 
         <?php $this->endBody() ?>
+        <script type="text/javascript">
+        
+        </script>
     </body>
 
 </html>

@@ -11,6 +11,7 @@ use common\models\Post;
 use common\models\Category;
 use common\models\Menu;
 use common\models\MenuItem;
+use backend\controllers\BackendController;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,12 +19,14 @@ use common\models\MenuItem;
  * and open the template in the editor.
  */
 
-class MenuController extends Controller {
+class MenuController extends BackendController {
 
     public function actionIndex() {
-        $category = $this->getCategories();
-        $page = Post::find()->where(['type' => 'page'])->all();
-        return $this->render('index', ['category' => $category, 'page' => $page]);
+        $menu = Menu::find()->all();
+        if (!empty($menu))
+            return $this->redirect(['view', 'id' => $menu[0]->id]);
+        else
+            return $this->redirect(['create']);
     }
 
     public function actionCreate() {
@@ -47,8 +50,8 @@ class MenuController extends Controller {
                     $category = Category::findOne($value);
                     $menuitem = new MenuItem();
                     $menuitem->menu_id = $id;
-                    if (!empty($category->parent_id))
-                        $menuitem->parent_id = $category->parent_id;
+//                    if (!empty($category->parent_id))
+//                        $menuitem->parent_id = $category->parent_id;
                     $menuitem->type_id = $category->id;
                     $menuitem->type = 'category';
                     $menuitem->type_name = $category->title;
@@ -78,6 +81,19 @@ class MenuController extends Controller {
         return $this->render('view', ['category' => $category, 'page' => $page, 'model' => $model, 'menuitem' => $menuitem, 'menuall' => $menuall]);
     }
 
+    public function actionDeleteitem($id) {
+        $menuitem = MenuItem::find()->where(['parent_id' => $id])->all();
+        if (!empty($menuitem)) {
+            foreach ($menuitem as $value) {
+                $item = MenuItem::findOne($value->id);
+                $item->parent_id = 0;
+                $item->save();
+            }
+        }
+        MenuItem::findOne($id)->delete();
+        return $this->redirect(['view', 'id' => $_GET['menu_id']]);
+    }
+
     public function getCategories(&$data = [], $parent = NULL) {
         $post = Post::findOne($this->id);
         $category = Category::find()->where(['parent_id' => $parent])->all();
@@ -99,15 +115,22 @@ class MenuController extends Controller {
             return '';
     }
 
-    public function actionOrder() {
+    public function actionEdit() {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        if (!empty($_POST['Menu']['id']) && !empty($_POST['order'])) {
-            foreach ($_POST['order'] as $key => $value) {
-                $item = MenuItem::findOne($value);
-                $item->parent_id = $_POST['parent'][$value];
-                $item->order = $key + 1;
-                $item->save();
+        if (!empty($_POST['Menu']['id'])) {
+            $menu = Menu::findOne($_POST['Menu']['id']);
+            $menu->name = $_POST['menu-name'];
+            $menu->save();
+            if (!empty($_POST['order'])) {
+                foreach ($_POST['order'] as $key => $value) {
+                    $item = MenuItem::findOne($value);
+                    $item->parent_id = $_POST['parent'][$value];
+                    $item->type_name = $_POST['name'][$value];
+                    $item->order = $key + 1;
+                    $item->save();
+                }
             }
+            return ['message' => 'ok'];
         }
     }
 

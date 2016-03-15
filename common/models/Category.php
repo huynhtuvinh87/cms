@@ -26,7 +26,7 @@ class Category extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'categories';
+        return 'giicms_categories';
     }
 
     /**
@@ -40,7 +40,7 @@ class Category extends \yii\db\ActiveRecord {
             [['title', 'slug', 'type'], 'string', 'max' => 255]
         ];
     }
-     
+
     /**
      * @inheritdoc
      */

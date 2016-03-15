@@ -8,11 +8,12 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\controllers\BackendController;
 
 /**
  * PostController implements the CRUD actions for Post model.
  */
-class PostController extends Controller {
+class PostController extends BackendController {
 
     public function behaviors() {
         return [
@@ -58,6 +59,7 @@ class PostController extends Controller {
     public function actionCreate() {
         $model = new Post();
         $model->type = 'post';
+        $model->user_id = \Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post())) {
             $model->category_id = implode(',', $model->category_id);
             if ($model->save())
@@ -77,7 +79,7 @@ class PostController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
+        $model->user_id = \Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post())) {
             $model->category_id = implode(',', $model->category_id);
             if ($model->save())

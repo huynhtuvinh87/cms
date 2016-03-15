@@ -26,7 +26,7 @@ class Post extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'posts';
+        return 'giicms_posts';
     }
 
     /**
@@ -37,6 +37,7 @@ class Post extends \yii\db\ActiveRecord {
             [['title', 'category_id'], 'required', 'message' => '{attribute} không được rỗng'],
             [['description', 'content', 'image'], 'string'],
             [['title', 'type', 'slug', 'status'], 'string', 'max' => 255],
+            [['user_id'], 'integer'],
             ['price','default'],
         ];
     }

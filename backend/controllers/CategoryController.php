@@ -9,11 +9,12 @@ use yii\data\ArrayDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\controllers\BackendController;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
  */
-class CategoryController extends Controller {
+class CategoryController extends BackendController {
 
     public function behaviors() {
         return [

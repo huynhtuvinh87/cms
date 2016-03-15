@@ -19,7 +19,7 @@ class MenuItem extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'menu_item';
+        return 'giicms_menu_item';
     }
 
     /**
@@ -28,7 +28,7 @@ class MenuItem extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['parent_id', 'menu_id', 'type_id', 'order'], 'integer'],
-            [['type','type_name','type_slug'], 'string'],
+            [['type', 'type_name', 'type_slug'], 'string'],
         ];
     }
 

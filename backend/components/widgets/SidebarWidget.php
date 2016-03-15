@@ -29,33 +29,14 @@ class SidebarWidget extends Widget {
 
                 <div class="navbar nav_title" style="border: 0;padding:15px 10px 15px 0;">
                     <a href="http://<?= $_SERVER['HTTP_HOST'] ?>" class="site_title">
-                        CMS
+                        GIICMS
                     </a>
                     <a href="http://<?= $_SERVER['HTTP_HOST'] ?>" class="site_title site_title_sm">
-                       CMS
+                        GIICMS
                     </a>
                 </div>
                 <div class="clearfix"></div>
 
-                <!-- menu prile quick info -->
-                <div class="profile">
-                    <div class="profile_pic">
-                        <?php
-                        if (!empty(Yii::$app->user->identity->avatar)) {
-                            echo '<img class="img-circle profile_img" width="150" src="' . Yii::$app->user->identity->username . '" alt="' . Yii::$app->user->identity->username . '">';
-                        } else {
-                            echo '<img class="img-circle profile_img" width="150" src="/images/icon/avatar.png" alt="' . Yii::$app->user->identity->username . '">';
-                        }
-                        ?>
-                    </div>
-                    <div class="profile_info">
-                        <span>Xin chào,</span>
-                        <h2><?= Yii::$app->user->identity->username ?></h2>
-                    </div>
-                </div>
-                <!-- /menu prile quick info -->
-
-                <br />
 
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
@@ -84,8 +65,15 @@ class SidebarWidget extends Widget {
                                         ['label' => 'Thêm mới', 'url' => ['product/create']],
                                     ],
                                 ],
+                                ['label' => '<i class="fa fa-picture-o"></i> Quản lý đơn hàng', 'url' => ['order/index']],
                                 ['label' => '<i class="fa fa-picture-o"></i> Quản lý menu', 'url' => ['menu/index']],
                                 ['label' => '<i class="fa fa-picture-o"></i> Quản lý file', 'url' => ['file/index']],
+                                ['label' => '<i class="fa fa-question-circle"></i> Phân quyền<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                        ['label' => 'Roles', 'url' => ['role/index']],
+                                        ['label' => 'Permissions', 'url' => ['permission/index']],
+                                        ['label' => 'Routes', 'url' => ['route/index']],
+                                    ],
+                                ],
                                 ['label' => '<i class="fa fa-cog"></i> Cấu hình chung', 'url' => ['setting/index']],
                             ],
                             'encodeLabels' => false,

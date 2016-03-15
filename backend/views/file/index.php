@@ -29,4 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
     var height = window.innerHeight;
     $(document).ready( function(){
         $("#iframe").css("height", height-200)
-    });')?>
+    });
+
+')?>

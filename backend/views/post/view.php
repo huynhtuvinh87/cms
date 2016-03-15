@@ -11,28 +11,49 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Posts'), 'url' => ['
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    <div class="col-md-9 col-sm-9 col-xs-12">
+        <div class="x_panel">
+            <h2>Mô tả</h2>
+            <p><?= $model->description ?></p>
+            <h2>Nội dung</h2>
+            <p><?= $model->content ?></p>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'title',
-            'description:ntext',
-            'content:ntext',
-        ],
-    ]) ?>
+        <div class="x_panel">
+        </div>
+
+        <div class="x_panel">
+
+        </div>
+        <div class="x_panel">
+        </div>
+        <div class="x_panel">
+            <div class="form-group">
+                <label class="control-label">Hình ảnh</label>
+                <div class="profile-avatar">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div id="image_preview">
+                                <?php
+                                if (!empty($model->image)) {
+                                    echo '<img src="' . $model->image . '" alt="' . $model->title . '" >';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>    
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <?= Html::submitButton($model->isNewRecord ? 'Thêm mới' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
+
+        </div>
+    </div>
 
 </div>
