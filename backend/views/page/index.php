@@ -69,7 +69,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                             ['class' => 'yii\grid\ActionColumn'],
                         ],
-                        'tableOptions' => ['class' => ' table table-striped responsive-utilities jambo_table bulk_action'],
                     ]);
                     ?>
                 </div>

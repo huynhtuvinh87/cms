@@ -46,29 +46,38 @@ class SidebarWidget extends Widget {
                         echo Menu::widget([
                             'items' => [
                                 ['label' => '<i class="fa fa-tachometer"></i> Trang chủ', 'url' => ['site/index']],
-                                ['label' => '<i class="fa fa-question-circle"></i> Quản lý bài viết<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                ['label' => '<i class="fa fa-thumb-tack"></i> Quản lý bài viết<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
                                         ['label' => 'Danh mục', 'url' => ['category/index']],
                                         ['label' => 'Thêm mới danh mục', 'url' => ['category/create']],
                                         ['label' => 'Danh sách', 'url' => ['post/index']],
                                         ['label' => 'Thêm mới', 'url' => ['post/create']],
                                     ],
                                 ],
-                                ['label' => '<i class="fa fa-thumb-tack"></i> Quản lý trang<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
-                                        ['label' => 'Danh sách', 'url' => ['page/index']],
-                                        ['label' => 'Thêm mới', 'url' => ['page/create']],
-                                    ],
-                                ],
-                                ['label' => '<i class="fa fa-question-circle"></i> Quản lý sản phẩm<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                ['label' => '<i class="fa fa fa-thumb-tack"></i> Quản lý sản phẩm<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
                                         ['label' => 'Danh mục', 'url' => ['productcategory/index']],
                                         ['label' => 'Thêm mới danh mục', 'url' => ['productcategory/create']],
                                         ['label' => 'Danh sách', 'url' => ['product/index']],
                                         ['label' => 'Thêm mới', 'url' => ['product/create']],
                                     ],
                                 ],
-                                ['label' => '<i class="fa fa-picture-o"></i> Quản lý đơn hàng', 'url' => ['order/index']],
-                                ['label' => '<i class="fa fa-picture-o"></i> Quản lý menu', 'url' => ['menu/index']],
-                                ['label' => '<i class="fa fa-picture-o"></i> Quản lý file', 'url' => ['file/index']],
-                                ['label' => '<i class="fa fa-question-circle"></i> Phân quyền<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                ['label' => '<i class="fa fa-shopping-cart"></i> Quản lý đơn hàng', 'url' => ['order/index']],
+                                ['label' => '<i class="fa fa-clipboard"></i> Quản lý trang<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                        ['label' => 'Danh sách', 'url' => ['page/index']],
+                                        ['label' => 'Thêm mới', 'url' => ['page/create']],
+                                    ],
+                                ],
+                                ['label' => '<i class="fa fa-wrench"></i> Quản lý chung<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                        ['label' => 'Menus', 'url' => ['menu/index']],
+                                        ['label' => 'Files', 'url' => ['file/index']],
+                                    ],
+                                ],
+                                ['label' => '<i class="fa fa-user"></i> Quản lý users<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                        ['label' => 'Danh sách', 'url' => ['user/index']],
+                                        ['label' => 'Thêm mới', 'url' => ['user/create']],
+                                    ],
+                                ],
+                                ['label' => '<i class="fa fa-share-alt-square"></i> Phân quyền<span class="fa fa-chevron-down"></span>', 'url' => 'javascript:void(0)', 'items' => [
+                                        ['label' => 'Assignments', 'url' => ['assignment/index']],
                                         ['label' => 'Roles', 'url' => ['role/index']],
                                         ['label' => 'Permissions', 'url' => ['permission/index']],
                                         ['label' => 'Routes', 'url' => ['route/index']],

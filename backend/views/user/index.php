@@ -8,14 +8,14 @@ use common\models\Post;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bài viết';
+$this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
     <div class="page-title">
         <div class="title_left">
             <h3>
-                QUẢN LÝ BÀI VIẾT
+                QUẢN LÝ USERS
                 <!-- <small>
                     Some examples to get you started
                 </small> -->
@@ -53,30 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'multiple' => true,
                             ],
                             ['class' => 'yii\grid\SerialColumn'],
-                            [
-                                'attribute' => 'category_id',
-                                'format' => 'raw',
-                                'value' => function($data) {
-                                    $rs = '';
-                                    foreach ($data->category as $value) {
-                                        $rs .= $value['indent'] . $value['title'] . '<br>';
-                                    }
-                                    return $rs;
-                                }
-                            ],
-                            'title',
-                            'description:ntext',
-                            [
-                                'attribute' => 'status',
-                                'format' => 'raw',
-                                'value' => function($data) {
-                                    if ($data['status'] == Post::STATUS_PUBLISH)
-                                        $check = 'checked';
-                                    else
-                                        $check = '';
-                                    return '<input type="checkbox" name="status" ' . $check . '>';
-                                }
-                            ],
+                            'username',
+                            'email',
+                            'firstname',
+                            'lastname',
                             ['class' => 'yii\grid\ActionColumn'],
                         ],
                     ]);
